@@ -7,3 +7,17 @@ steps:
       - --destination=gcr.io/$PROJECT_ID/imagemagick:latest
       - --cache=true
       - --cache-ttl=96h
+  - name: "gcr.io/kaniko-project/executor:latest"
+    waitFor: ["-"]
+    dir: "firebase"
+    args:
+      - --destination=gcr.io/$PROJECT_ID/firebase:latest
+      - --cache=true
+      - --cache-ttl=96h
+  - name: "gcr.io/kaniko-project/executor:latest"
+    waitFor: ["-"]
+    dir: "blog-builder"
+    args:
+      - --destination=gcr.io/$PROJECT_ID/blog-builder:latest
+      - --cache=true
+      - --cache-ttl=96h
