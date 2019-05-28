@@ -1,0 +1,7 @@
+steps:
+  - name: "gcr.io/kaniko-project/executor:latest"
+    dir: "imagemagick"
+    args:
+      - --destination=gcr.io/$PROJECT_ID/imagemagick:latest
+      - --cache=true
+      - --cache-ttl=96h
