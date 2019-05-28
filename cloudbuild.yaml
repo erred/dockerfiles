@@ -28,3 +28,10 @@ steps:
       - --destination=gcr.io/$PROJECT_ID/site-builder:latest
       - --cache=true
       - --cache-ttl=96h
+  - name: "gcr.io/kaniko-project/executor:latest"
+    waitFor: ["-"]
+    dir: "http-server"
+    args:
+      - --destination=gcr.io/$PROJECT_ID/http-server:latest
+      - --cache=true
+      - --cache-ttl=96h
