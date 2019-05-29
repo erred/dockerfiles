@@ -1,0 +1,7 @@
+steps:
+  - name: "gcr.io/kaniko-project/executor:latest"
+    dir: "parcel"
+    args:
+      - --destination=gcr.io/$PROJECT_ID/firebase:latest
+      - --cache=true
+      - --cache-ttl=96h
