@@ -1,6 +1,6 @@
 steps:
   - name: "gcr.io/kaniko-project/executor:latest"
-    dir: "imagemagick"
+    dir: protoc
     args:
       - --destination=gcr.io/$PROJECT_ID/protoc:latest
       - --cache=true
