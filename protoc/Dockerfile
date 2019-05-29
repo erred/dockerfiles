@@ -1,4 +1,4 @@
-FROM go:alpine
+FROM golang:alpine
 
 RUN apk add --no-cache curl protobuf
 
