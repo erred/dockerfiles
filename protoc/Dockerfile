@@ -8,5 +8,4 @@ RUN curl -L -o /usr/bin/protoc-gen-grpc-web \
 
 RUN GOBIN=/usr/bin go get github.com/golang/protobuf/protoc-gen-go && rm -rf /root/.cache /go
 
-WORKDIR /workspace
 ENTRYPOINT ["/usr/bin/protoc"]

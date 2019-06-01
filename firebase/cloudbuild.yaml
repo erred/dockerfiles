@@ -2,6 +2,6 @@ steps:
   - name: "gcr.io/kaniko-project/executor:latest"
     dir: "firebase"
     args:
+      - --cache
+      - --context=/workspace/firebase
       - --destination=gcr.io/$PROJECT_ID/firebase:latest
-      - --cache=true
-      - --cache-ttl=96h
