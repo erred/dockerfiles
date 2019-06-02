@@ -1,0 +1,7 @@
+steps:
+  - name: "gcr.io/kaniko-project/executor:latest"
+    dir: "cf-dns-update"
+    args:
+      - --cache
+      - --context=/workspace/cf-dns-update
+      - --destination=gcr.io/$PROJECT_ID/cf-dns-update:latest
