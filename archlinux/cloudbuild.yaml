@@ -3,6 +3,5 @@ steps:
     dir: "archlinux"
     args:
       - --cache
-      - --cache-ttl=96h
       - --context=/workspace/archlinux
       - --destination=gcr.io/$PROJECT_ID/archlinux:latest

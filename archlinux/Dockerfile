@@ -11,6 +11,7 @@ RUN pacman -r /build -Sy --noconfirm pacman && \
 
 FROM scratch
 COPY --from=build /build /
+RUN ls -al && ls -al /dev
 RUN pacman-key --init && \
     pacman-key --populate archlinux
 
