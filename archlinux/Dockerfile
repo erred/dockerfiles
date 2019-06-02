@@ -11,8 +11,7 @@ RUN pacman -r /build -Sy --noconfirm pacman && \
 
 FROM scratch
 COPY --from=build /build /
-RUN locale-gen && \
-    pacman-key --init && \
+RUN pacman-key --init && \
     pacman-key --populate archlinux
 
 ENTRYPOINT ["/bin/bash"]
