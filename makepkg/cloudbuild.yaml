@@ -1,0 +1,7 @@
+steps:
+  - name: "gcr.io/kaniko-project/executor:latest"
+    dir: "makepkg"
+    args:
+      - --cache
+      - --context=/workspace/makepkg
+      - --destination=gcr.io/$PROJECT_ID/makepkg:latest
