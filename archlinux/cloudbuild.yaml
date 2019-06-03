@@ -8,9 +8,13 @@ steps:
   #     - --context=/workspace/archlinux
   #     - --destination=gcr.io/$PROJECT_ID/archlinux:latest
   - name: "gcr.io/cloud-builders/docker:latest"
-    dir: "archlinux"
+    dir: "$_IMG"
     args:
-      - build
-      - -t
-      - "gcr.io/$PROJECT_ID/archlinux"
+      - "build"
+      - "-t"
+      - "gcr.io/$PROJECT_ID/$_IMG"
       - .
+images:
+  - "gcr.io/$PROJECT_ID/$_IMG"
+substitutions:
+  _IMG: "archlinux"
