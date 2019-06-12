@@ -17,7 +17,7 @@ var (
 	Port    = os.Getenv("PORT")
 
 	// service stuff
-	ServerKey       = os.Getenv("RECAPTCHA_KEY")
+	ServerKey       = strings.TrimSpace(os.Getenv("RECAPTCHA_KEY"))
 	VerifyURL       = "https://www.google.com/recaptcha/api/siteverify"
 	JSONContentType = "application/json"
 )
@@ -66,7 +66,7 @@ func main() {
 		}
 		b, err = json.Marshal(req)
 		if Debug {
-			log.Printf("prepared req %v from %v\n", string(b), req)
+			log.Printf("encoded req %v from %v\n", string(b), req)
 		}
 		if err != nil {
 			log.Printf("json Marshal req: %v\n", err)
