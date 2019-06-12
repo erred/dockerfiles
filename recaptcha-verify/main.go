@@ -1,11 +1,11 @@
 package main
 
 import (
-	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -61,20 +61,12 @@ func main() {
 		}
 		o = r.Header.Get("x-forwarded-for")
 
-		req := RecaptchaReq{
-			ServerKey, string(b), o,
-		}
-		b, err = json.Marshal(req)
-		if Debug {
-			log.Printf("encoded req %v from %v\n", string(b), req)
-		}
-		if err != nil {
-			log.Printf("json Marshal req: %v\n", err)
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
+		v := url.Values{}
+		v.Set("secret", ServerKey)
+		v.Set("response", string(b))
+		v.Set("remoteip", o)
 
-		res, err := http.Post(VerifyURL, JSONContentType, bytes.NewBuffer(b))
+		res, err := http.PostForm(VerifyURL, v)
 		if err != nil {
 			log.Printf("verify POST: %v\n", err)
 			w.WriteHeader(http.StatusInternalServerError)
