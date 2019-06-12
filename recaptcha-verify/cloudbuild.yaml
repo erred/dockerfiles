@@ -7,6 +7,7 @@ steps:
   #   - --grpc-web_out=import_style=commonjs,mode=grpcwebtext:readss
   #   - --go_out=plugins=grpc:readss
   - id: build
+    dir: $_IMG
     name: gcr.io/cloud-builders/docker:latest
     args:
       - build
