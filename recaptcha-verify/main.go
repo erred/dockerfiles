@@ -80,7 +80,7 @@ func main() {
 			return
 		}
 		defer r.Body.Close()
-		b, err = ioutil.ReadAll(r.Body)
+		b, err = ioutil.ReadAll(res.Body)
 		if err != nil {
 			log.Printf("ReadAll response body: %v\n", err)
 			w.WriteHeader(http.StatusInternalServerError)
