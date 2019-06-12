@@ -64,10 +64,10 @@ func main() {
 		req := RecaptchaReq{
 			ServerKey, string(b), o,
 		}
-		if Debug {
-			log.Printf("prepared req: %v\n", req)
-		}
 		b, err = json.Marshal(req)
+		if Debug {
+			log.Printf("prepared req %v from %v\n", string(b), req)
+		}
 		if err != nil {
 			log.Printf("json Marshal req: %v\n", err)
 			w.WriteHeader(http.StatusInternalServerError)
@@ -88,14 +88,14 @@ func main() {
 			return
 		}
 
-		if Debug {
-			log.Printf("readall json got: %v\n", string(b))
-		}
 		rec := RecaptchaRes{}
-		if err := json.Unmarshal(b, &res); err != nil {
+		if err := json.Unmarshal(b, &rec); err != nil {
 			log.Printf("json Unmarshal: %v\n", err)
 			w.WriteHeader(http.StatusInternalServerError)
 			return
+		}
+		if Debug {
+			log.Printf("parsed rec %v from %v\n", rec, string(b))
 		}
 
 		log.Printf("Verified from %v response %v\n", o, rec)
