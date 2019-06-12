@@ -92,11 +92,11 @@ func main() {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
+		log.Printf("Verified from %v response %v\n", o, rec)
 		if !rec.Success {
 			w.WriteHeader(http.StatusForbidden)
 			return
 		}
-		log.Printf("Verified from %v response %v\n", o, rec)
 		w.WriteHeader(http.StatusOK)
 	}))
 }
