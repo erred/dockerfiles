@@ -60,9 +60,6 @@ func main() {
 			return
 		}
 		o = r.Header.Get("x-forwarded-for")
-		// if o == "" {
-		// 	o = r.Header.Get("origin")
-		// }
 
 		req := RecaptchaReq{
 			ServerKey, string(b), o,
@@ -90,12 +87,17 @@ func main() {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
+
+		if Debug {
+			log.Printf("readall json got: %v\n", string(b))
+		}
 		rec := RecaptchaRes{}
 		if err := json.Unmarshal(b, &res); err != nil {
 			log.Printf("json Unmarshal: %v\n", err)
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
+
 		log.Printf("Verified from %v response %v\n", o, rec)
 		if !rec.Success {
 			w.WriteHeader(http.StatusForbidden)
