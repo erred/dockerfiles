@@ -63,8 +63,12 @@ func main() {
 		// if o == "" {
 		// 	o = r.Header.Get("origin")
 		// }
+
 		req := RecaptchaReq{
 			ServerKey, string(b), o,
+		}
+		if Debug {
+			log.Printf("prepared req: %v\n", req)
 		}
 		b, err = json.Marshal(req)
 		if err != nil {
